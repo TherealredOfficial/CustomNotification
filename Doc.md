@@ -3,6 +3,7 @@
 # 1. Load The String.
 
 ```
+lua
 https://raw.githubusercontent.com/TherealredOfficial/CustomNotification/main/Main
 ```
 
