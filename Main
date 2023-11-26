@@ -1,0 +1,71 @@
+-- GitHub script content
+
+-- Function to handle the custom notification
+return function(title, text, icon)
+    -- Create a function to display a custom notification
+    local function showCustomNotification()
+        local player = game.Players.LocalPlayer
+        local gui = player:WaitForChild("PlayerGui")
+
+        -- Create a ScreenGui for the notification
+        local notificationGui = Instance.new("ScreenGui")
+        notificationGui.Parent = gui
+
+        -- Create an outer Frame for the notification (Very Black block without rounded corners)
+        local outerFrame = Instance.new("Frame")
+        outerFrame.Size = UDim2.new(0, 280, 0, 110)
+        outerFrame.Position = UDim2.new(1, 280, 1, -140) -- Starting position from the right
+        outerFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Very Black color
+        outerFrame.BorderSizePixel = 0
+        outerFrame.Parent = notificationGui
+
+        -- Create an ImageLabel for the icon in the top left corner
+        local iconImage = Instance.new("ImageLabel")
+        iconImage.Size = UDim2.new(0, 30, 0, 30)
+        iconImage.Position = UDim2.new(0, 10, 0, 10) -- Adjust position to the top left corner
+        iconImage.BackgroundTransparency = 1
+        iconImage.Image = icon -- Use the provided icon asset ID
+        iconImage.Parent = outerFrame
+
+        -- Create a TextLabel for the title with White text and BlueViolet stroke
+        local titleText = Instance.new("TextLabel")
+        titleText.Size = UDim2.new(1, 0, 0.55, 0)
+        titleText.Position = UDim2.new(0, 50, 0, 0) -- Adjust position to accommodate the icon
+        titleText.Text = title
+        titleText.Font = Enum.Font.DenkOne
+        titleText.TextSize = 36
+        titleText.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text color
+        titleText.TextStrokeTransparency = 0 -- Full stroke visibility
+        titleText.TextStrokeColor3 = Color3.fromRGB(138, 43, 226) -- BlueViolet stroke color
+        titleText.BackgroundTransparency = 1
+        titleText.Parent = outerFrame
+
+        -- Create a TextLabel for the subtitle with White text and BlueViolet stroke
+        local subtitleText = Instance.new("TextLabel")
+        subtitleText.Size = UDim2.new(1, 0, 0.45, 0)
+        subtitleText.Position = UDim2.new(0, 50, 0.55, 0) -- Adjust position to accommodate the icon
+        subtitleText.Text = text
+        subtitleText.Font = Enum.Font.DenkOne
+        subtitleText.TextSize = 18
+        subtitleText.TextColor3 = Color3.fromRGB(255, 255, 255) -- White text color
+        subtitleText.TextStrokeTransparency = 0 -- Full stroke visibility
+        subtitleText.TextStrokeColor3 = Color3.fromRGB(138, 43, 226) -- BlueViolet stroke color
+        subtitleText.BackgroundTransparency = 1
+        subtitleText.Parent = outerFrame
+
+        -- Tween the notification for a smooth appearance from the right
+        outerFrame:TweenPosition(UDim2.new(1, -280, 1, -140), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 1, true)
+
+        -- Remove the notification after a delay
+        wait(5)
+
+        -- Tween the notification to exit to the right after the delay
+        outerFrame:TweenPosition(UDim2.new(1, 280, 1, -140), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 1, true)
+        wait(1) -- Add a short delay before destroying to allow the exit animation to complete
+
+        notificationGui:Destroy()
+    end
+
+    -- Example usage
+    showCustomNotification()
+end
