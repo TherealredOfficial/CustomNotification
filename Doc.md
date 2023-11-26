@@ -20,4 +20,4 @@ Warn.VC("Welcome!", "Thanks for using the Custom Notification script!", "rbxasse
 # Notes
 The Notification Is Still In Development. I'm looking to add alot more stuff, such as custom colors, gradients, UIStrokes, etc. Thanks for using it!
 
---
+--Made With Love By TheRealRed
